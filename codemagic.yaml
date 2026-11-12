@@ -6,7 +6,6 @@ workflows:
     environment:
       node: latest
       xcode: latest
-      cocoapods: default
     scripts:
       - name: Install dependencies and sync Capacitor
         script: |
@@ -14,6 +13,6 @@ workflows:
           npx cap sync ios
       - name: Build iOS app
         script: |
-          xcodebuild -workspace ios/App/App.xcworkspace -scheme App -configuration Release -sdk iphoneos CODE_SIGNING_ALLOWED=NO build
+          xcodebuild -project ios/App/App.xcodeproj -scheme App -configuration Release -sdk iphoneos CODE_SIGNING_ALLOWED=NO build
     artifacts:
       - build/ios/ipa/*.ipa
